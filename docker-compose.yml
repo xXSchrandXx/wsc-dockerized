@@ -29,7 +29,7 @@ services:
       - wsc-network
 
   mysql:
-    image: "mariadb:lts"
+    image: mysql
     volumes:
       - "./docker/mysql/conf/my.cnf:/etc/mysql/my.cnf:ro"
     environment:
