@@ -1,4 +1,5 @@
 # WSC Dockerized
+(Modified for own development purposes. See original for save version https://github.com/SoftCreatRMedia/wsc-dockerized)
 
 #### WSC (WoltLab Suite Core) in Docker
 
