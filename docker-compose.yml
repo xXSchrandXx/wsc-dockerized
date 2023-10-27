@@ -17,9 +17,9 @@ services:
         PHP_VERSION: "${PHP_VERSION:-8.2}"
     environment:
       WSC_VERSION: "${WSC_VERSION:-6.1}"
-      MYSQL_DATABASE: "${MYSQL_DATABASE:-woltlab_suite}"
-      MYSQL_USER: "${MYSQL_USER:-woltlab_suite}"
-      MYSQL_PASSWORD: "${MYSQL_PASSWORD:-woltlab_suite}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE:-wsc}"
+      MYSQL_USER: "${MYSQL_USER:-wsc}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD:-wsc}"
     volumes:
       - "./public:/wsc"
       - "./devtools:/devtools"
@@ -35,9 +35,12 @@ services:
     environment:
       MYSQL_ROOT_HOST: 172.*.*.*
       MYSQL_RANDOM_ROOT_PASSWORD: "yes"
-      MYSQL_DATABASE: "${MYSQL_DATABASE:-woltlab_suite}"
-      MYSQL_USER: "${MYSQL_USER:-woltlab_suite}"
-      MYSQL_PASSWORD: "${MYSQL_PASSWORD:-woltlab_suite}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE:-wsc}"
+      MYSQL_USER: "${MYSQL_USER:-wsc}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD:-wsc}"
+    command:
+      - mysqld
+      - "--innodb_buffer_pool_size=1G"
     ports:
       - "${MYSQL_PORT:-3306}:3306"
     networks:
