@@ -12,6 +12,7 @@ RUN set -eux; \
         curl \
         libxml2-dev \
         tar \
+        zip \
         imagemagick; \
     curl -sL https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions -o /usr/local/bin/install-php-extensions; \
     chmod +x /usr/local/bin/install-php-extensions; \
@@ -23,7 +24,9 @@ RUN set -eux; \
         imagick \
         pdo_mysql \
         redis \
-        opcache; \
+        opcache \
+        zip \
+        soap; \
     rm /usr/local/bin/install-php-extensions; \
     rm -rf /var/lib/apt/lists/*
 
