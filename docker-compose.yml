@@ -5,8 +5,11 @@ services:
       - "./public:/wsc"
       - "./docker/nginx/realip.conf:/etc/nginx/conf.d/realip.conf"
       - "./docker/nginx/site.conf:/etc/nginx/conf.d/default.conf"
+      - "./logs/nginx/:/var/log/nginx/"
+      - "phpmyadmindata:/phpmyadmin"
     ports:
-      - "${FPM_PORT:-80}:80"
+      - "${WSC_PORT:-80}:80"
+      - "${PHPMYADMIN_PORT:-8080}:8080"
     networks:
       - wsc-network
 
@@ -55,9 +58,21 @@ services:
     networks:
       - wsc-network
 
+  phpmyadmin-fpm:
+    image: "phpmyadmin:fpm"
+    environment:
+      PMA_HOST: "mysql"
+      PMA_USER: "${MYSQL_USER:-wsc}"
+      PMA_PASSWORD: "${MYSQL_PASSWORD:-wsc}"
+    volumes:
+      - "phpmyadmindata:/var/www/html/"
+    networks:
+      - wsc-network
+
 networks:
   wsc-network:
     driver: bridge
 
 volumes:
   dragonflydata:
+  phpmyadmindata:
