@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! "$(ls -A "$1")" ]; then
+if [ ! "$(ls -A "$1")" ] && [[ $2 != "local" ]]; then
     # Define the installation directory and reference/version
     INSTALL_DIR="$1"
     TMP_DIR="$(mktemp -d)"
