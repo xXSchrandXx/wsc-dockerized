@@ -1,7 +1,6 @@
 services:
   nginx:
     image: "nginx:alpine"
-    restart: always
     volumes:
       - "./public:/wsc"
       - "./docker/nginx/realip.conf:/etc/nginx/conf.d/realip.conf"
@@ -21,7 +20,6 @@ services:
       MYSQL_DATABASE: "${MYSQL_DATABASE:-woltlab_suite}"
       MYSQL_USER: "${MYSQL_USER:-woltlab_suite}"
       MYSQL_PASSWORD: "${MYSQL_PASSWORD:-woltlab_suite}"
-    restart: always
     volumes:
       - "./public:/wsc"
       - "./devtools:/devtools"
@@ -32,7 +30,6 @@ services:
 
   mysql:
     image: "mariadb:lts"
-    restart: always
     volumes:
       - "./docker/mysql/conf/my.cnf:/etc/mysql/my.cnf:ro"
     environment:
@@ -48,7 +45,6 @@ services:
 
   redis:
     image: docker.dragonflydb.io/dragonflydb/dragonfly:ubuntu
-    restart: always
     ulimits:
       memlock: -1
     volumes:
